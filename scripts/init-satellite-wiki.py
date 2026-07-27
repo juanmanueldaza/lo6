@@ -184,6 +184,7 @@ def init_wiki(
             ],
         }
         tree = gh_api("POST", f"repos/{owner_repo}/git/trees", tree_payload)
+        assert isinstance(tree, dict)
         tree_sha: str = tree["sha"]
 
         # Create commit
@@ -192,6 +193,7 @@ def init_wiki(
             f"repos/{owner_repo}/git/commits",
             {"message": "Initial wiki", "tree": tree_sha, "parents": []},
         )
+        assert isinstance(commit, dict)
         commit_sha: str = commit["sha"]
 
         # Create refs/wiki/master

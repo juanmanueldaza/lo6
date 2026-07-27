@@ -1561,16 +1561,16 @@ def _init_github_and_wiki(name: str, remote: str, target: Path) -> None:
 
     def eprint(*a: object, **kw: object) -> None:
         kw.setdefault("file", sys.stderr)
-        print(*a, **kw)
+        print(*a, **kw)  # type: ignore[call-overload]
 
     def run(cmd: list[str], **kw: object) -> subprocess.CompletedProcess[str]:
         kw.setdefault("capture_output", True)
         kw.setdefault("text", True)
-        result = subprocess.run(cmd, **kw)  # type: ignore[arg-type]
+        result = subprocess.run(cmd, **kw)  # type: ignore[call-overload]
         if result.returncode != 0 and kw.get("check") is not False:
             eprint(f"Command failed: {' '.join(str(c) for c in cmd)}")
             eprint(result.stderr.strip() if result.stderr else "")
-        return result  # type: ignore[return-value]
+        return result
 
     eprint(f"=== Setting up GitHub repo: {remote} ===")
 
