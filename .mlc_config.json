@@ -1,5 +1,9 @@
 {
+  "retryOn429": true,
+  "retryCount": 3,
+  "aliveStatusCodes": [200, 206, 301, 302, 403],
   "ignorePatterns": [
-    { "pattern": "^(Home|Getting-Started|CLI-Reference|Python-API|Models|Strategies|Output-Formats|MCP-Server|Architecture|Development|FAQ|Satellite-Protocol|Roadmap|Model-Catalog|Contributing|Engines)$" }
+    { "pattern": "^(Home|Getting-Started|CLI-Reference|Python-API|Models|Strategies|Output-Formats|MCP-Server|Architecture|Development|FAQ|Satellite-Protocol|Roadmap|Model-Catalog|Contributing|Engines)$" },
+    { "pattern": "^https://github\\.com/reverberage/" }
   ]
 }
